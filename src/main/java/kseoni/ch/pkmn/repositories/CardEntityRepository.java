@@ -1,8 +1,10 @@
 package kseoni.ch.pkmn.repositories;
 
 import kseoni.ch.pkmn.entities.CardEntity;
-import kseoni.ch.pkmn.models.Card;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,11 +16,13 @@ public interface CardEntityRepository extends JpaRepository<CardEntity, Long> {
 
     Optional<CardEntity> findByNameAndNumber(String name, String number);
 
-    List<CardEntity> findByPokemonOwner_Id(UUID ownerId);
-
     public void deleteCardById(UUID id);
 
     public boolean existsById(UUID id);
 
     public CardEntity findById(UUID id);
+
+    @Query("SELECT c FROM CardEntity c WHERE c.pokemonOwner = :ownerId")
+    CardEntity findByPokemonOwner(@Param("ownerId") UUID ownerId);
+
 }

@@ -31,7 +31,7 @@ public class CardEntity {
     @Column(name = "stage")
     private PokemonStage pokemonStage;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
     @Column(name = "hp")
@@ -68,7 +68,7 @@ public class CardEntity {
     private char regulationMark;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pokemon_owner_id")
+    @JoinColumn(name = "pokemon_owner")
     private StudentEntity pokemonOwner;
 
     @Column(name = "card_number")

@@ -22,16 +22,16 @@ public class StudentEntity {
     @GeneratedValue
     private UUID id;
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "sur_name", nullable = false)
+    @Column(name = "sur_name")
     private String surName;
 
-    @Column(name = "family_name", nullable = false)
+    @Column(name = "family_name")
     private String familyName;
 
-    @Column(name = "group", nullable = false)
+    @Column(name = "'group'")
     private String group;
 
     @OneToMany(mappedBy = "pokemonOwner", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)

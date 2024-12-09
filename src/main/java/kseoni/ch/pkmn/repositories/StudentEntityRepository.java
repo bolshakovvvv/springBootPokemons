@@ -18,4 +18,6 @@ public interface StudentEntityRepository extends JpaRepository<StudentEntity, Lo
     public void deleteCardById(UUID id);
 
     public boolean existsById(UUID id);
+
+    public StudentEntity findById(UUID id);
 }

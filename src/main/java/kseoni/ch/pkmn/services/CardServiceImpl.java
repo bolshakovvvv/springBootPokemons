@@ -36,9 +36,9 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public List<Card> getCardsByOwnerId(UUID ownerId) {
-        List<CardEntity> cardEntities = cardDao.getCardsByOwnerId(ownerId);
-        return cardEntities.stream().map(this::fromEntity).toList();
+    public Card getCardByOwnerId(UUID ownerId) {
+        CardEntity cardEntity = cardDao.getCardByPokemonOwner_Id(ownerId);
+        return fromEntity(cardEntity);
     }
 
     @Override
@@ -141,7 +141,7 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public List<Card> getCardsByOwner(Student owner) {
+    public Card getCardByOwner(Student owner) {
         StudentEntity studentEntity = studentDao.getStudentByFioAndGroup(
                 owner.getFirstName(),
                 owner.getSurName(),
@@ -151,8 +151,8 @@ public class CardServiceImpl implements CardService {
         if (studentEntity == null) {
             throw new RuntimeException("Owner not found");
         }
-        List<CardEntity> cardEntities = cardDao.getCardsByOwnerId(studentEntity.getId());
-        return cardEntities.stream().map(this::fromEntity).toList();
+        CardEntity cardEntity = cardDao.getCardByPokemonOwner_Id(studentEntity.getId());
+        return fromEntity(cardEntity);
     }
 
 }

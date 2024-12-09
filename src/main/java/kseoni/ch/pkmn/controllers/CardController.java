@@ -22,9 +22,9 @@ public class CardController {
     }
 
     @GetMapping("/owner/{ownerId}")
-    public List<Card> getCardsByOwnerId(@PathVariable("ownerId") String ownerId) {
+    public Card getCardByOwnerId(@PathVariable("ownerId") String ownerId) {
         UUID parsedOwnerId = UUID.fromString(ownerId);
-        return cardService.getCardsByOwnerId(parsedOwnerId);
+        return cardService.getCardByOwnerId(parsedOwnerId);
     }
 
     @GetMapping("/id/{id}")
@@ -45,7 +45,7 @@ public class CardController {
     }
 
     @PostMapping("/owner")
-    public List<Card> getCardsByOwner(@RequestBody Student owner) {
-        return cardService.getCardsByOwner(owner);
+    public Card getCardByOwner(@RequestBody Student owner) {
+        return cardService.getCardByOwner(owner);
     }
 }

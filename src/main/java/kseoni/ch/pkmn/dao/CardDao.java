@@ -1,13 +1,17 @@
 package kseoni.ch.pkmn.dao;
 
 import kseoni.ch.pkmn.entities.CardEntity;
+import kseoni.ch.pkmn.entities.StudentEntity;
 import kseoni.ch.pkmn.repositories.CardEntityRepository;
+import kseoni.ch.pkmn.repositories.StudentEntityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+import static kseoni.ch.pkmn.models.Student.fromEntity;
 
 @Component
 @RequiredArgsConstructor
@@ -16,20 +20,15 @@ public class CardDao {
     private final CardEntityRepository cardRepository;
 
     public CardEntity getCardById(UUID id) {
-        try{
-            return cardRepository.findById(id);
-        }
-        catch (RuntimeException r){
-            return null;
-        }
+        return cardRepository.findById(id);
     }
 
     public List<CardEntity> getCardsByName(String name) {
         return cardRepository.findByName(name);
     }
 
-    public List<CardEntity> getCardsByOwnerId(UUID ownerId) {
-        return cardRepository.findByPokemonOwner_Id(ownerId);
+    public CardEntity getCardByPokemonOwner_Id(UUID ownerId) {
+        return cardRepository.findByPokemonOwner(ownerId);
     }
 
     public Optional<CardEntity> getCardByNameAndNumber(String name, String number) {
