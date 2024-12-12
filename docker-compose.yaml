@@ -19,7 +19,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: pkmnDB
+      POSTGRES_DB: pkmn_DB
     volumes:
       - db_data:/var/lib/postgresql/data
 

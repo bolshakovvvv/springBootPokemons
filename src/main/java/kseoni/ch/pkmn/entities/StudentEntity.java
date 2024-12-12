@@ -1,7 +1,6 @@
 package kseoni.ch.pkmn.entities;
 
 import jakarta.persistence.*;
-import kseoni.ch.pkmn.entities.CardEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,7 +30,7 @@ public class StudentEntity {
     @Column(name = "family_name")
     private String familyName;
 
-    @Column(name = "'group'")
+    @Column(name = "\"group\"")
     private String group;
 
     @OneToMany(mappedBy = "pokemonOwner", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)

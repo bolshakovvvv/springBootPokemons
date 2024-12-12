@@ -2,6 +2,7 @@ package kseoni.ch.pkmn.repositories;
 
 import kseoni.ch.pkmn.entities.CardEntity;
 
+import kseoni.ch.pkmn.entities.StudentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -22,7 +23,6 @@ public interface CardEntityRepository extends JpaRepository<CardEntity, Long> {
 
     public CardEntity findById(UUID id);
 
-    @Query("SELECT c FROM CardEntity c WHERE c.pokemonOwner = :ownerId")
-    CardEntity findByPokemonOwner(@Param("ownerId") UUID ownerId);
+    CardEntity findByPokemonOwner(StudentEntity student);
 
 }

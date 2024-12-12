@@ -35,13 +35,13 @@ public class CardEntity {
     private String name;
 
     @Column(name = "hp")
-    private int hp;
+    private Short hp;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "pokemon_type")
     private EnergyType pokemonType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "evolves_from_id")
     private CardEntity evolvesFrom;
 
@@ -68,13 +68,10 @@ public class CardEntity {
     private char regulationMark;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pokemon_owner")
+    @JoinColumn(name = "pokemon_owner_id")
     private StudentEntity pokemonOwner;
 
     @Column(name = "card_number")
     private String number;
-
-    @Column(name = "image_url")
-    private String imageUrl;
 
 }

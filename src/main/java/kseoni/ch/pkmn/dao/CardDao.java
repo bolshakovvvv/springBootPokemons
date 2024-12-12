@@ -18,6 +18,7 @@ import static kseoni.ch.pkmn.models.Student.fromEntity;
 public class CardDao {
 
     private final CardEntityRepository cardRepository;
+    private final StudentEntityRepository studentEntityRepository;
 
     public CardEntity getCardById(UUID id) {
         return cardRepository.findById(id);
@@ -28,7 +29,8 @@ public class CardDao {
     }
 
     public CardEntity getCardByPokemonOwner_Id(UUID ownerId) {
-        return cardRepository.findByPokemonOwner(ownerId);
+        StudentEntity student = studentEntityRepository.findById(ownerId);
+        return cardRepository.findByPokemonOwner(student);
     }
 
     public Optional<CardEntity> getCardByNameAndNumber(String name, String number) {

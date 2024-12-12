@@ -8,6 +8,8 @@ import java.util.UUID;
 
 public interface StudentEntityRepository extends JpaRepository<StudentEntity, Long> {
 
+    List<StudentEntity> findAll();
+
     List<StudentEntity> findByGroup(String group);
 
     List<StudentEntity> findByFirstNameAndSurNameAndFamilyName(String firstName, String surName, String familyName);

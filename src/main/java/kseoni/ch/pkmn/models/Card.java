@@ -12,7 +12,7 @@ import java.util.List;
 public class Card {
     private PokemonStage pokemonStage;
     private String name;
-    private int hp;
+    private Short hp;
     private EnergyType pokemonType;
     private Card evolvesFrom;
     private List<AttackSkill> skills;

@@ -10,6 +10,7 @@ import kseoni.ch.pkmn.models.PokemonStage;
 import kseoni.ch.pkmn.models.Student;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -63,10 +64,6 @@ public class CardServiceImpl implements CardService {
             throw new RuntimeException("EvolvesFrom is required for non-basic stages");
         }
 
-        //сохранение URL
-        String imageUrl = pokemonTcgClient.getCardImageByName(card.getName());
-        card.setImageUrl(imageUrl);
-
         Optional<CardEntity> existing = cardDao.getCardByNameAndNumber(card.getName(), card.getNumber());
         CardEntity entityToSave = toEntity(card);
         if (existing.isPresent()) {
@@ -79,6 +76,7 @@ public class CardServiceImpl implements CardService {
         return fromEntity(saved);
     }
 
+    @Transactional
     @Override
     public void deleteCardById(UUID id) {
         cardDao.deleteCardById(id);
